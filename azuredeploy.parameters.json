@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "namePrefix": {
+      "value": "TEAMECS"
+    },
+    "existingDomainName": {
+      "value": "teaminctest.com"
+    },
+    "adminUsername": {
+      "value": "Administrator1"
+    },
+    "adminPassword": {
+      "value": "ChangeMe123!"
+    },
+    "svcUsername": {
+      "value": "svc_ecssql"
+    },
+    "svcPassword": {
+      "value": "3cSL3akDaS001"
+    },
+    "existingVirtualNetworkName": {
+      "value": "adVNET"
+    },
+    "existingVirtualNetworkRGName": {
+      "value": "rg-team-sqlalwayson"
+    },
+    "existingSubnetName": {
+      "value": "adSubnet"
+    }
+  }
+}
