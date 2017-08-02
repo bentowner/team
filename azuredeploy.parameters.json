@@ -3,31 +3,31 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "namePrefix": {
-      "value": "TEAMECS"
+      "value": "teamfci"
     },
     "existingDomainName": {
-      "value": "teaminctest.com"
+      "value": "ecs.test"
     },
     "adminUsername": {
-      "value": "Administrator1"
+      "value": "administrator1"
     },
     "adminPassword": {
       "value": "ChangeMe123!"
     },
-    "svcUsername": {
-      "value": "svc_ecssql"
-    },
-    "svcPassword": {
-      "value": "3cSL3akDaS001"
-    },
     "existingVirtualNetworkName": {
-      "value": "adVNET"
+      "value": "VNETecs"
     },
     "existingVirtualNetworkRGName": {
-      "value": "rg-team-sqlalwayson"
+      "value": "rg-team-dc"
     },
     "existingSubnetName": {
-      "value": "adSubnet"
+      "value": "SQLsubnet"
+    },
+    "platformFaultDomainCount": {
+      "value": "3"
+    },
+    "platformUpdateDomainCount": {
+      "value": "5"
     }
   }
 }

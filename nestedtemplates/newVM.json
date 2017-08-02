@@ -5,6 +5,9 @@
         "vmName": {
             "type": "string"
         },
+        "storageAccountUri": {
+            "type": "string"
+        },
         "vmAvailabilitySetName": {
             "type": "string"
         },
@@ -24,16 +27,16 @@
             "type": "securestring"
         },
         "imagePublisher": {
-            "type": "MicrosoftWindowsServer"
+            "type": "string"
         },
         "imageOffer": {
-            "type": "WindowsServer-HUB"
+            "type": "string"
         },
         "imageSKU": {
-            "type": "2016-Datacenter-HUB"
+            "type": "string"
         },
         "imageVersion": {
-            "type": "2016.127.20170411"
+            "type": "string"
         },
         "_artifactsLocation": {
             "type": "string"
@@ -65,6 +68,9 @@
                     "diskCaching": {
                         "value": "None"
                     },
+                    "storageAccountUri": {
+                        "value": "[parameters('storageAccountUri')]"
+                    },
                     "diskNamingPrefix": {
                         "value": "[concat(parameters('vmName'), '-data')]"
                     }
@@ -73,7 +79,7 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines",
-            "apiVersion": "2016-04-30-preview",
+            "apiVersion": "2015-06-15",
             "location": "[resourceGroup().location]",
             "name": "[parameters('vmName')]",
             "dependsOn": [
@@ -99,7 +105,10 @@
                         "version": "[parameters('imageVersion')]"
                     },
                     "osDisk": {
-                        "name": "[concat(parameters('vmName'),'-osdisk')]",
+                        "name": "osdisk",
+                        "vhd": {
+                            "uri": "[concat(parameters('storageAccountUri'), 'vhds/',parameters('vmName'),'-osdisk.vhd')]"
+                        },
                         "caching": "ReadWrite",
                         "createOption": "FromImage"
                     },
