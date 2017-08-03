@@ -90,13 +90,13 @@
             }
         },
         "platformFaultDomainCount":{
-          "type": "string",
+          "type": "int",
           "metadata": {
               "description": "Count of Fault Domains, enables resiliency options"
           }
         },
         "platformUpdateDomainCount":{
-          "type": "string",
+          "type": "int",
           "metadata": {
               "description": "Count of Update Domains, enables resiliency options"
           }
@@ -147,7 +147,7 @@
             "properties": {
                 "platformFaultDomainCount": "[parameters('platformFaultDomainCount')]",
                 "platformUpdateDomainCount": "[parameters('platformUpdateDomainCount')]",
-                "managed": true
+                "managed": "true"
             }
         },
         {
