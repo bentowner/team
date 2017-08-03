@@ -159,18 +159,18 @@
             "apiVersion": "2016-03-30",
             "name": "[concat(parameters('namePrefix'),'lb')]",
             "type": "Microsoft.Network/loadBalancers",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [],
             "properties": {
                 "frontendIPConfigurations": [
                     {
                         "name": "LoadBalancerFrontEnd",
                         "properties": {
-                            "privateIPAllocationMethod": "[parameters('privateIPAllocationMethod')]",
+                            "privateIPAllocationMethod": "Static",
                             "subnet": {
                                 "id": "[parameters('nicSubnetUri')]"
                             },
-                            "privateIPAddress": "[parameters('privateIPAddress')]"
+                            "privateIPAddress": "[parameters('sqllbIP')]"
                         }
                     }
                 ]
