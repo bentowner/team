@@ -146,8 +146,7 @@
             "location": "[resourceGroup().location]",
             "properties": {
                 "platformFaultDomainCount": "[parameters('platformFaultDomainCount')]",
-                "platformUpdateDomainCount": "[parameters('platformUpdateDomainCount')]",
-                "managed": "true"
+                "platformUpdateDomainCount": "[parameters('platformUpdateDomainCount')]"
             }
         },
         {

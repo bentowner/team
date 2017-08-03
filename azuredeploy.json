@@ -90,15 +90,19 @@
     },
     "platformFaultDomainCount": {
       "type": "int",
+      "minValue": 2,
+      "maxValue": 5,
       "metadata": {
-        "description": "Count of Fault Domains, enables resiliency options."
-      }
+        "description": "Number of Fault Domains to be created in cluster (Min=2, Max=5)"
+      },
+      "defaultValue": 2
     },
     "platformUpdateDomainCount": {
       "type": "int",
       "metadata": {
-        "description": "Count of Update Domains, enables resiliency options."
-      }
+        "description": "Number of Update Domains to be created in cluster"
+      },
+      "defaultValue": 5
     },
     "existingSubnetName": {
       "type": "string",
@@ -125,7 +129,7 @@
       "metadata": {
         "description": "Location of resources that the script is dependent on such as linked templates and DSC modules"
       },
-      "defaultValue": "https://raw.githubusercontent.com/bentowner/team/master/"
+      "defaultValue": "https://raw.githubusercontent.com/bentowner/team/master"
     },
     "_artifactsLocationSasToken": {
       "type": "securestring",
@@ -190,10 +194,10 @@
             "value": "[parameters('shareName')]"
           },
           "platformFaultDomainCount": {
-            "value": "[parameters('shareName')]"
+            "value": "[parameters('platformFaultDomainCount')]"
           },
           "platformUpdateDomainCount": {
-            "value": "[parameters('shareName')]"
+            "value": "[parameters('platformUpdateDomainCount')]"
           },
           "_artifactsLocation": {
             "value": "[parameters('_artifactsLocation')]"
