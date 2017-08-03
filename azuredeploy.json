@@ -63,6 +63,12 @@
         "description": "DNS domain name for existing Active Directory domain"
       }
     },
+    "sqllbIP": {
+      "type": "string",
+      "metadata": {
+        "description": "Static IP address to be used by the SQL LB"
+      }
+    },
     "adminUsername": {
       "type": "string",
       "metadata": {
@@ -174,6 +180,9 @@
           },
           "nicSubnetUri": {
             "value": "[variables('subnetRef')]"
+          },
+          "sqllbIP": {
+            "value": "[parameters('sqllbIP')]"
           },
           "vmSize": {
             "value": "[parameters('vmSize')]"

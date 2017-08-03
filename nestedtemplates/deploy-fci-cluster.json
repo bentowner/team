@@ -47,6 +47,12 @@
                 "description": "Resource ID for existing vnet/subnet to which VM NICs should be attached"
             }
         },
+        "sqllbIP": {
+            "type": "string",
+            "metadata": {
+                "description": "Static IP address to be used by the SQL LB"
+            }
+        },
         "vmSize": {
             "type": "string",
             "metadata": {
@@ -129,7 +135,7 @@
         "storageNamePrefix": "[concat(parameters('namePrefix'),uniqueString(resourceGroup().id),'vm')]",
         "witnessStorageName": "[concat(parameters('namePrefix'),uniqueString(resourceGroup().id),'cw')]",
         "witnessStorageType": "Standard_LRS",
-        "vmNamePrefix": "[concat(parameters('namePrefix'),'-s2d-')]",
+        "vmNamePrefix": "[concat(parameters('namePrefix'),'-fci-')]",
         "vmAvailabilitySetName": "[concat(variables('vmNamePrefix'),'as')]",
         "clusterName": "[concat(variables('vmNamePrefix'),'c')]",
         "vmLoopTemplateURL": "[concat(parameters('_artifactsLocation'),'/nestedtemplates/newVM.json',parameters('_artifactsLocationSasToken'))]",
@@ -149,6 +155,27 @@
                 "platformUpdateDomainCount": "[parameters('platformUpdateDomainCount')]"
             }
         },
+        {
+            "apiVersion": "2016-03-30",
+            "name": "[parameters('name')]",
+            "type": "Microsoft.Network/loadBalancers",
+            "location": "[parameters('location')]",
+            "dependsOn": [],
+            "properties": {
+                "frontendIPConfigurations": [
+                    {
+                        "name": "LoadBalancerFrontEnd",
+                        "properties": {
+                            "privateIPAllocationMethod": "[parameters('privateIPAllocationMethod')]",
+                            "subnet": {
+                                "id": "[parameters('nicSubnetUri')]"
+                            },
+                            "privateIPAddress": "[parameters('privateIPAddress')]"
+                        }
+                    }
+                ]
+            }
+        }
         {
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[variables('witnessStorageName')]",

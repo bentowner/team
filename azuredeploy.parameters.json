@@ -23,6 +23,9 @@
     "existingSubnetName": {
       "value": "SQLsubnet"
     },
+    "sqllbIP": {
+      "value": "10.12.211.120"
+    },
     "platformFaultDomainCount": {
       "value": 3
     },
