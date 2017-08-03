@@ -189,6 +189,12 @@
           "shareName": {
             "value": "[parameters('shareName')]"
           },
+          "platformFaultDomainCount": {
+            "value": "[parameters('shareName')]"
+          },
+          "platformUpdateDomainCount": {
+            "value": "[parameters('shareName')]"
+          },
           "_artifactsLocation": {
             "value": "[parameters('_artifactsLocation')]"
           },

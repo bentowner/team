@@ -145,8 +145,8 @@
             "apiVersion": "2015-06-15",
             "location": "[resourceGroup().location]",
             "properties": {
-                "platformFaultDomainCount": "[parameters('availabilitySetPlatformFaultDomainCount')]",
-                "platformUpdateDomainCount": "[parameters('availabilitySetPlatformUpdateDomainCount')]",
+                "platformFaultDomainCount": "[parameters('platformFaultDomainCount')]",
+                "platformUpdateDomainCount": "[parameters('platformUpdateDomainCount')]",
                 "managed": true
             }
         },
