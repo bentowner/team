@@ -30,7 +30,7 @@ $subscriptionName = "Sandbox_001"
 $template1File = $filelocation + "azuredeploy.json"
 $template1ParameterFile = $filelocation + "azuredeploy.parameters.json"
 
-$location = "East US"
+$location = "eastus"
 $resourceGroup1 = "rg-team-fci"
 
 # Login-AzureRmAccount
