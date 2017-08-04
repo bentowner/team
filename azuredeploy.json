@@ -37,7 +37,7 @@
       "metadata": {
         "description": "Number of S2D VMs to be created in cluster (Min=2, Max=3)"
       },
-      "defaultValue": 2
+      "defaultValue": 3
     },
     "vmDiskSize": {
       "type": "int",
