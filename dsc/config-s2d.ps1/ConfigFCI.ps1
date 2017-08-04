@@ -44,7 +44,8 @@ configuration ConfigS2D
     )
 
     Import-DscResource -ModuleName xComputerManagement, xFailOverCluster, xActiveDirectory
- 
+    Import-Module BitsTransfer
+     
     [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainNetbiosName}\$($Admincreds.UserName)", $Admincreds.Password)
     [System.Management.Automation.PSCredential]$DomainFQDNCreds = New-Object System.Management.Automation.PSCredential ("${DomainName}\$($Admincreds.UserName)", $Admincreds.Password)
 
@@ -52,6 +53,8 @@ configuration ConfigS2D
     For ($count=0; $count -lt $vmCount; $count++) {
         $Nodes.Add($vmNamePrefix + $Count.ToString())
     }
+
+    $url= "https://teamtstecs.blob.core.windows.net/sqlserverinstall/SQLServerFull.zip"; $output = "c:\SQLServerFull.zip";
 
     Node localhost
     {
@@ -135,14 +138,21 @@ configuration ConfigS2D
             GetScript = "@{Ensure = if ((Get-ClusterSharedVolume).State -eq 'Online') {'Present'} Else {'Absent'}}"
             DependsOn = "[Script]IncreaseClusterTimeouts"
         }
-
-   
+           
         Script CreateShare
         {
             SetScript = "New-Item -Path C:\ClusterStorage\Volume1\${ShareName} -ItemType Directory; New-SmbShare -Name ${ShareName} -Path C:\ClusterStorage\Volume1\${ShareName} -FullAccess ${DomainName}\$($AdminCreds.Username)"
             TestScript = "(Get-SmbShare -Name ${ShareName} -ErrorAction SilentlyContinue).ShareState -eq 'Online'"
             GetScript = "@{Ensure = if ((Get-SmbShare -Name ${ShareName} -ErrorAction SilentlyContinue).ShareState -eq 'Online') {'Present'} Else {'Absent'}}"
             DependsOn = "[Script]EnableS2D"
+        }
+
+        Script SqlServerDL
+        {
+            SetScript = "Start-BitsTransfer -Source $url -Destination $output -Asynchronous"
+            TestScript = "(Get-SmbShare -Name ${ShareName} -ErrorAction SilentlyContinue).ShareState -eq 'Online'"
+            GetScript = "@{Ensure = if ((Get-ClusterSharedVolume).State -eq 'Online') {'Present'} Else {'Absent'}}"
+            DependsOn = "[Script]CreateShare"
         }
 
         LocalConfigurationManager 
