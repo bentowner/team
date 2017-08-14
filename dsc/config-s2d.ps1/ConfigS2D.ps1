@@ -43,8 +43,7 @@ configuration ConfigS2D
 
     )
 
-    Import-DscResource -ModuleName @{ModuleName="xComputerManagement"; 
-RequiredVersion="1.2.2"}, xFailOverCluster, xActiveDirectory, xSOFS, xWaitForADDomain
+    Import-DscResource -ModuleName @{ModuleName="xComputerManagement"; RequiredVersion="1.2.2"}, xFailOverCluster, xActiveDirectory, xSOFS, xWaitForADDomain
  
     [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainNetbiosName}\$($Admincreds.UserName)", $Admincreds.Password)
     [System.Management.Automation.PSCredential]$DomainFQDNCreds = New-Object System.Management.Automation.PSCredential ("${DomainName}\$($Admincreds.UserName)", $Admincreds.Password)
