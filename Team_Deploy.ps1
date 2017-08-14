@@ -40,7 +40,7 @@ Set-StrictMode -Version Latest
 Set-AzureRmContext -SubscriptionName $subscriptionName
 
 ## Creates the Resource Group that you have specified.
-New-AzureRmResourceGroup -Name $resourceGroup1 -Location $location
+#New-AzureRmResourceGroup -Name $resourceGroup1 -Location $location
 
 ## Deploys the template that you have specified.
 New-AzureRmResourceGroupDeployment -Name TEAMFCI -ResourceGroupName $resourceGroup1 -TemplateFile $template1File -TemplateParameterFile $template1ParameterFile -Verbose
